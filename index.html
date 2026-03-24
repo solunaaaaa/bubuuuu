@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Dhruvi </title>
+
+<style>
+body {
+    margin: 0;
+    font-family: "Comic Sans MS", cursive;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: linear-gradient(#aee2ff, #fef6e4);
+}
+
+/* WAVES */
+.wave {
+    position: absolute;
+    bottom: 0;
+    width: 200%;
+    height: 200px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 1000px;
+    animation: waveMove 10s linear infinite;
+}
+.wave:nth-child(2){bottom:20px;opacity:.5;animation-duration:14s;}
+.wave:nth-child(3){bottom:40px;opacity:.3;animation-duration:18s;}
+
+@keyframes waveMove {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* LOCK SCREEN */
+#lockScreen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+}
+
+input {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 10px;
+    text-align: center;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    background: #ff99bb;
+    color: white;
+    cursor: pointer;
+}
+
+/* CARD */
+.card {
+    display: none;
+    background: rgba(255,255,255,0.95);
+    padding: 20px;
+    border-radius: 20px;
+    max-width: 90%;
+    width: 350px;
+    text-align: center;
+    z-index: 2;
+}
+
+/* MESSAGE */
+.bubble {
+    background: #fff0f6;
+    padding: 12px;
+    border-radius: 15px;
+    font-size: 13px;
+    color: #555;
+    text-align: left;
+    max-height: 200px;
+    overflow-y: auto;
+    line-height: 1.5;
+}
+
+/* BEAR */
+.bear {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 10px auto;
+    transition: transform 0.8s ease;
+}
+.bear.move { transform: scale(1.3); }
+
+.face {
+    width: 80px;
+    height: 80px;
+    background: #8b5e3c;
+    border-radius: 50%;
+    position: absolute;
+    left: 10px;
+}
+
+.ear {
+    width: 30px;
+    height: 30px;
+    background: #8b5e3c;
+    border-radius: 50%;
+    position: absolute;
+}
+.ear.left { left: 0; top: 0; }
+.ear.right { right: 0; top: 0; }
+
+.eye {
+    width: 8px;
+    height: 8px;
+    background: black;
+    border-radius: 50%;
+    position: absolute;
+    top: 35px;
+}
+.eye.left { left: 25px; }
+.eye.right { right: 25px; }
+
+.nose {
+    width: 12px;
+    height: 8px;
+    background: black;
+    border-radius: 50%;
+    position: absolute;
+    top: 50px;
+    left: 34px;
+}
+
+/* ARMS */
+.arm {
+    width: 20px;
+    height: 50px;
+    background: #8b5e3c;
+    position: absolute;
+    top: 40px;
+    border-radius: 20px;
+    transition: 0.5s;
+}
+.arm.left { left: -5px; }
+.arm.right { right: -5px; }
+
+.hug .arm.left {
+    transform: rotate(40deg) translateX(10px);
+}
+.hug .arm.right {
+    transform: rotate(-40deg) translateX(-10px);
+}
+
+/* HEARTS */
+.heart {
+    position: absolute;
+    color: #ff80aa;
+    animation: float 4s linear infinite;
+}
+@keyframes float {
+    from { transform: translateY(100vh); opacity: 1; }
+    to { transform: translateY(-10vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="wave"></div>
+<div class="wave"></div>
+<div class="wave"></div>
+
+<!-- LOCK -->
+<div id="lockScreen">
+    <h2>Enter Password 💖</h2>
+    <input type="password" id="password" placeholder="hint: your dob">
+    <button onclick="checkPassword()">unlock ✨</button>
+</div>
+
+<!-- MAIN -->
+<div class="card" id="mainContent">
+
+<div class="bubble" id="bubble">
+Good morning Babuuu
+
+I just wanted to check in on you today. I know you’re dealing with your period and still going to university, and honestly that says so much about how strong you are 🥺
+
+But please don’t push yourself too much, okay? Take things slow today. It’s completely okay if you feel tired or a little low… you don’t have to be strong every second.
+
+Just go step by step. Eat properly, drink water, and take small breaks whenever you can 🤍
+
+I’m really proud of you for showing up even on a day like this. And I’m always here… whether you want to talk, complain, or just not feel alone.
+
+Take care of yourself today, okay? 🫂💖
+</div>
+
+<div class="bear" id="bear">
+    <div class="ear left"></div>
+    <div class="ear right"></div>
+    <div class="face"></div>
+    <div class="eye left"></div>
+    <div class="eye right"></div>
+    <div class="nose"></div>
+    <div class="arm left"></div>
+    <div class="arm right"></div>
+</div>
+
+<h2>For Dhruvi 💖</h2>
+
+<button onclick="hug()">hug me 🫂</button>
+
+</div>
+
+<script>
+
+function checkPassword() {
+    const pass = document.getElementById("password").value;
+    if (pass === "06032005") {
+        document.getElementById("lockScreen").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
+        greet();
+    } else {
+        alert("hehe not that… think again cutie 🥺");
+    }
+}
+
+function greet() {
+    const greet = new SpeechSynthesisUtterance(
+        "hieee… kywootie jujuju… wakey wakey sweety…"
+    );
+    greet.rate = 0.75;
+    greet.pitch = 1.6;
+    speechSynthesis.speak(greet);
+}
+
+function hug() {
+    const bear = document.getElementById("bear");
+    bear.classList.add("move");
+    bear.classList.add("hug");
+
+    document.getElementById("bubble").innerText =
+    "Babuuuu come huggiessss dw na im here for you 🫂💖";
+
+    const msg = new SpeechSynthesisUtterance(
+        "babuuu I’m right here take it slow kywootiepiee okay"
+    );
+    msg.rate = 0.7;
+    msg.pitch = 1.4;
+    speechSynthesis.speak(msg);
+
+    for (let i = 0; i < 8; i++) createHeart();
+}
+
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerText = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 4000);
+}
+</script>
+
+</body>
+</html>
